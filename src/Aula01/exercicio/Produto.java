@@ -1,16 +1,18 @@
 package Aula01.exercicio;
 
+import javax.swing.JOptionPane;
+
 public class Produto {
 
 	String nome;
 	double valor;
-	int qtdd;
+	int qtddEstoque;
 	
-	public Produto(String nome, double valor, int qtdd) {
+	public Produto(String nome, double valor, int qtddEstoque) {
 		super();
 		this.nome = nome;
 		this.valor = valor;
-		this.qtdd = qtdd;
+		this.qtddEstoque = qtddEstoque;
 	}
 
 	public String getNome() {
@@ -29,11 +31,27 @@ public class Produto {
 		this.valor = valor;
 	}
 
-	public int getQtdd() {
-		return qtdd;
+	public int getQtddEstoque() {
+		return qtddEstoque;
 	}
 
-	public void setQtdd(int qtdd) {
-		this.qtdd = qtdd;
+	public void setQtddEstoque(int qtddEstoque) {
+		this.qtddEstoque = qtddEstoque;
+	}
+	
+	public void verificarDisponibilidade() {
+		if(this.qtddEstoque <= 0) {
+			JOptionPane.showMessageDialog(null, "Produto Indisponível em estoque!");
+		}else {
+			calculaValorEmEstoque();
+		}
+	}
+	
+	public void calculaValorEmEstoque(){
+		double valorEmEstoque = this.valor * this.qtddEstoque;
+		JOptionPane.showMessageDialog(null, "ESTOQUE " + this.nome 
+				+ "\n\nQuantidade Unitária: " + this.qtddEstoque 
+				+ "\nValor Unitário: R$" + this.valor
+				+ "\n\nValor total: " + valorEmEstoque);
 	}
 }
